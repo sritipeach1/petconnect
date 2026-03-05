@@ -1,1 +1,16 @@
+Flask==2.3.3
+Werkzeug==2.3.7
+python-dotenv==1.0.0
+requests
+gunicorn
 
+APScheduler==3.10.4
+stripe==5.15.0
+
+# Gemini (new SDK)
+google-genai
+
+# Gmail / Google APIs
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
