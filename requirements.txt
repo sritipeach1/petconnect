@@ -5,10 +5,10 @@ requests
 gunicorn
 
 APScheduler==3.10.4
-stripe==5.15.0
+stripe
 
-# Gemini (new SDK)
-google-genai
+# Gemini 
+google-generativeai==0.3.0
 
 # Gmail / Google APIs
 google-api-python-client

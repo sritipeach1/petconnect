@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | PetConnect{% endblock %}
+
+{% block content %}
+<section class="admin-section">
+    <div class="container">
+        <div class="admin-top">
+            <div>
+                <span class="eyebrow">Admin control panel</span>
+                <h1>Welcome, {{ session.get('user_name') }}</h1>
+                <p>Manage clinic approvals and monitor account status from one place.</p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>{{ pending|length }}</h3>
+                <p>Pending Clinics</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>{{ approved|length }}</h3>
+                <p>Approved Clinics</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>{{ rejected|length }}</h3>
+                <p>Rejected Clinics</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>{{ total_clinics }}</h3>
+                <p>Total Clinics</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>{{ total_owners }}</h3>
+                <p>Total Owners</p>
+            </div>
+        </div>
+
+        <div class="admin-block">
+            <div class="section-head">
+                <span class="eyebrow">Needs review</span>
+                <h2>Pending Clinic Applications</h2>
+            </div>
+
+            {% if pending %}
+                <div class="admin-card-grid">
+                    {% for clinic in pending %}
+                    <div class="admin-user-card">
+                        <div class="status-badge pending-badge">Pending</div>
+                        <h3>{{ clinic.clinic_name or clinic.name }}</h3>
+                        <p><strong>Contact person:</strong> {{ clinic.name }}</p>
+                        <p><strong>Email:</strong> {{ clinic.email }}</p>
+                        <p><strong>Phone:</strong> {{ clinic.phone or "Not provided" }}</p>
+                        <p><strong>Location:</strong> {{ clinic.clinic_location or "Not provided" }}</p>
+                        <p><strong>License:</strong> {{ clinic.clinic_license or "Not provided" }}</p>
+
+                        <div class="admin-actions">
+                            <form method="POST" action="{{ url_for('approve_clinic', user_id=clinic.id) }}">
+                                <button type="submit" class="btn btn-primary small-btn">Approve</button>
+                            </form>
+
+                            <form method="POST" action="{{ url_for('reject_clinic', user_id=clinic.id) }}">
+                                <button type="submit" class="btn btn-outline small-btn reject-btn">Reject</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-box">No pending clinic applications right now.</div>
+            {% endif %}
+        </div>
+
+        <div class="admin-block">
+            <div class="section-head">
+                <span class="eyebrow">Approved list</span>
+                <h2>Approved Clinics</h2>
+            </div>
+
+            {% if approved %}
+                <div class="admin-card-grid">
+                    {% for clinic in approved %}
+                    <div class="admin-user-card">
+                        <div class="status-badge approved-badge">Approved</div>
+                        <h3>{{ clinic.clinic_name or clinic.name }}</h3>
+                        <p><strong>Contact person:</strong> {{ clinic.name }}</p>
+                        <p><strong>Email:</strong> {{ clinic.email }}</p>
+                        <p><strong>Phone:</strong> {{ clinic.phone or "Not provided" }}</p>
+                        <p><strong>Location:</strong> {{ clinic.clinic_location or "Not provided" }}</p>
+                        <p><strong>License:</strong> {{ clinic.clinic_license or "Not provided" }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-box">No approved clinics yet.</div>
+            {% endif %}
+        </div>
+
+        <div class="admin-block">
+            <div class="section-head">
+                <span class="eyebrow">Rejected list</span>
+                <h2>Rejected Clinics</h2>
+            </div>
+
+            {% if rejected %}
+                <div class="admin-card-grid">
+                    {% for clinic in rejected %}
+                    <div class="admin-user-card">
+                        <div class="status-badge rejected-badge">Rejected</div>
+                        <h3>{{ clinic.clinic_name or clinic.name }}</h3>
+                        <p><strong>Contact person:</strong> {{ clinic.name }}</p>
+                        <p><strong>Email:</strong> {{ clinic.email }}</p>
+                        <p><strong>Phone:</strong> {{ clinic.phone or "Not provided" }}</p>
+                        <p><strong>Location:</strong> {{ clinic.clinic_location or "Not provided" }}</p>
+                        <p><strong>License:</strong> {{ clinic.clinic_license or "Not provided" }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-box">No rejected clinics.</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

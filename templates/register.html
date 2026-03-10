@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Register | PetConnect{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="container auth-container">
+        <div class="auth-left">
+            <span class="eyebrow">Join PetConnect</span>
+            <h1>Create your account</h1>
+            <p>
+                Register as a pet owner or as a clinic. Clinic accounts will wait for admin approval.
+            </p>
+            <img src="{{ url_for('static', filename='images/auth-register.jpg') }}" alt="Register image">
+        </div>
+
+        <div class="auth-card">
+            <h2>Register</h2>
+
+            <div class="role-toggle">
+                <button type="button" id="ownerBtn" class="role-btn">Pet Owner</button>
+                <button type="button" id="clinicBtn" class="role-btn">Clinic</button>
+            </div>
+
+            <form method="POST" class="auth-form">
+                <input type="hidden" name="role" id="roleInput" value="{{ default_role }}">
+
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+
+                <label>Phone</label>
+                <input type="text" name="phone" placeholder="Enter your phone number">
+
+                <div id="clinicFields" class="clinic-fields">
+                    <label>Clinic Name</label>
+                    <input type="text" name="clinic_name" placeholder="Enter clinic name">
+
+                    <label>Clinic Location</label>
+                    <input type="text" name="clinic_location" placeholder="Enter clinic location">
+
+                    <label>Clinic License Number</label>
+                    <input type="text" name="clinic_license" placeholder="Enter license number">
+                </div>
+
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Create a password" required>
+
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+
+                <button type="submit" class="btn btn-primary full-btn">Create Account</button>
+            </form>
+
+            <p class="auth-switch">
+                Already have an account?
+                <a href="{{ url_for('login') }}">Login</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    const ownerBtn = document.getElementById("ownerBtn");
+    const clinicBtn = document.getElementById("clinicBtn");
+    const roleInput = document.getElementById("roleInput");
+    const clinicFields = document.getElementById("clinicFields");
+
+    function setRole(role) {
+        roleInput.value = role;
+
+        if (role === "clinic") {
+            clinicFields.style.display = "block";
+            clinicBtn.classList.add("active");
+            ownerBtn.classList.remove("active");
+        } else {
+            clinicFields.style.display = "none";
+            ownerBtn.classList.add("active");
+            clinicBtn.classList.remove("active");
+        }
+    }
+
+    ownerBtn.addEventListener("click", () => setRole("owner"));
+    clinicBtn.addEventListener("click", () => setRole("clinic"));
+
+    setRole("{{ default_role }}");
+</script>
+{% endblock %}

@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block title %}PetConnect | Home{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <span class="eyebrow">Smart care for every pet</span>
+            <h1>Better Pet Care, Appointments & AI Support in One Place</h1>
+            <p>
+                PetConnect helps pet owners book clinic appointments, manage pet profiles,
+                and access modern features like behavior support and early-warning insights.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Login</a>
+            </div>
+
+            <div class="hero-points">
+                <div class="point-card">
+                    <strong>Clinic Booking</strong>
+                    <span>Find and book vet appointments easily</span>
+                </div>
+                <div class="point-card">
+                    <strong>Pet Profiles</strong>
+                    <span>Keep your pet’s details in one place</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-main-image">
+                <img src="{{ url_for('static', filename='images/hero-main.jpg') }}" alt="Main pet care hero image">
+            </div>
+
+            <div class="floating-card floating-card-1">
+                <img src="{{ url_for('static', filename='images/hero-small-1.jpg') }}" alt="Cute pet">
+                <div>
+                    <h4>Trusted Care</h4>
+                    <p>Owners + clinics on one platform</p>
+                </div>
+            </div>
+
+            <div class="floating-card floating-card-2">
+                <img src="{{ url_for('static', filename='images/hero-small-2.jpg') }}" alt="Pet consultation">
+                <div>
+                    <h4>AI Features</h4>
+                    <p>Modern tools for better decisions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section light-section">
+    <div class="container">
+        <div class="section-head center">
+            <span class="eyebrow">What PetConnect offers</span>
+            <h2>Core Features for Pet Owners and Clinics</h2>
+            <p>A clean and modern system for appointments, records, communication, and smart support.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-box">
+                <div class="feature-icon">📅</div>
+                <h3>Appointment Booking</h3>
+                <p>Pet owners can search clinics and schedule appointments without hassle.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">🐶</div>
+                <h3>Pet Profile Management</h3>
+                <p>Store pet details like age, breed, vaccination info, and history.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">🏥</div>
+                <h3>Clinic Dashboard</h3>
+                <p>Clinics can manage doctors, requests, and appointment flow from one place.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">🤖</div>
+                <h3>AI Support Features</h3>
+                <p>New smart features like Behavior Decoder and Disease Early-Warning Radar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section about-section">
+    <div class="container about-grid">
+        <div class="about-image-wrap">
+            <img src="{{ url_for('static', filename='images/about.jpg') }}" alt="Vet and pet care image">
+        </div>
+
+        <div class="about-text">
+            <span class="eyebrow">Why choose PetConnect</span>
+            <h2>Warm design, practical tools, and a better experience</h2>
+            <p>
+                The goal of PetConnect is not just functionality. It should also feel welcoming,
+                reliable, and easy to use for both pet owners and clinics.
+            </p>
+
+            <ul class="check-list">
+                <li>Easy owner and clinic registration</li>
+                <li>Role-based login and dashboard access</li>
+                <li>Clean appointment flow</li>
+                <li>AI-ready modern pet care experience</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section ai-section">
+    <div class="container">
+        <div class="section-head center">
+            <span class="eyebrow">New premium ideas</span>
+            <h2>Modern AI Features You Added</h2>
+        </div>
+
+        <div class="ai-grid">
+            <div class="ai-card">
+                <h3>Behavior Decoder</h3>
+                <p>Analyze visible pet cues from an uploaded image and show a simplified wellness interpretation.</p>
+            </div>
+
+            <div class="ai-card">
+                <h3>Disease Early-Warning Radar</h3>
+                <p>Look for community-level symptom patterns and highlight possible local outbreak signals.</p>
+            </div>
+
+            <div class="ai-card">
+                <h3>PetBot Guidance</h3>
+                <p>A quick conversational helper for general pet care guidance and support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container cta-box">
+        <div>
+            <span class="eyebrow">Ready to begin?</span>
+            <h2>Create your account and start building PetConnect</h2>
+        </div>
+
+        <div class="cta-actions">
+            <a href="{{ url_for('register', role='owner') }}" class="btn btn-primary">Register as Owner</a>
+            <a href="{{ url_for('register', role='clinic') }}" class="btn btn-outline">Register as Clinic</a>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <h3>PetConnect</h3>
+            <p>Smart pet care platform with clean design and practical functionality.</p>
+        </div>
+
+        <div>
+            <h4>Quick Links</h4>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        </div>
+
+        <div>
+            <h4>Project Focus</h4>
+            <p>Appointments, pet records, clinic workflow, and AI-assisted support.</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
